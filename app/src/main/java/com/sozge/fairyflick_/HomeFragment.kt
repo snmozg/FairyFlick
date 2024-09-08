@@ -30,13 +30,26 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.button.setOnClickListener{
+            buttonClicked()
+        }
+
+
+
+
+
+
+
+    }
+
+    private fun buttonClicked() {
+
         val generativeModel = GenerativeModel(
             modelName = "gemini-1.5-flash",
             // Access your API key as a Build Configuration variable (see "Set up your API key" above)
             apiKey = "AIzaSyCp0UwezGR19olTPjmyo58owhmc7awNvnY"
         )
-
-        val prompt = "merhaba."
+        val prompt = "Merhaba, bana kısa,öz bir paragraflık çocuk masalı yaz."
         MainScope().launch {
             val response = generativeModel.generateContent(prompt)
             binding.textView.text = response.text
